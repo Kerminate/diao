@@ -4,7 +4,10 @@ const Controller = require('egg').Controller
 
 class HomeController extends Controller {
   async index() {
-    this.ctx.body = 'hi, egg'
+    console.log(global.use)
+    const r = use('app.schemas.signup')
+    this.ctx.type = 'json'
+    this.ctx.body = JSON.stringify(r)
   }
 }
 

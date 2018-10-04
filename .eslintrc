@@ -17,6 +17,8 @@
   },
   "globals": {
     "use": true,
-    "Controller": true
+    "Controller": true,
+    "C": true,
+    "check": true
   }
 }

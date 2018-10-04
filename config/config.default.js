@@ -15,7 +15,7 @@ module.exports = appInfo => {
     host: 'localhost',
     port: '3306',
     username: 'root',
-    password: ''
+    password: '123456'
   }
 
   config.flash = {
@@ -29,10 +29,14 @@ module.exports = appInfo => {
         required: '必须填 %s 字段'
       }
     },
-    async formatter(ctx, error) {
+    async formate(ctx, error) {
       // eslint-disable-next-line
-      info('[egg-validator] -> %s', JSON.stringify(error, ' '));
-      throw new Error(error[0].message)
+      // info('[egg-validator] -> %s', JSON.stringify(error, ' '));
+      // throw new Error(error[0].message)
+      console.log(error)
+      ctx.type = 'json'
+      ctx.status = 400
+      ctx.body = error
     }
   }
 

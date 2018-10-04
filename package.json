@@ -5,7 +5,8 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
+    "egg-scripts": "^2.5.0",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -38,7 +39,8 @@
     "autod": "autod",
     "m:new": "sequelize migration:create",
     "m:up": "sequelize db:migrate",
-    "m:down": "sequelize db:migrate:undo"
+    "m:down": "sequelize db:migrate:undo",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0"
   },
   "ci": {
     "version": "8"
@@ -48,5 +50,10 @@
     "url": ""
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

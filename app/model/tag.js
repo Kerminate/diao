@@ -1,14 +1,9 @@
 'use strict'
-module.exports = (sequelize, DataTypes) => {
-  const Tag = sequelize.define(
-    'Tag',
-    {
-      id: DataTypes.STRING
-    },
-    {}
-  )
-  Tag.associate = function() {
-    // associations can be defined here
-  }
+
+module.exports = app => {
+  const { STRING } = app.Sequelize
+  const Tag = app.model.define('Tag', {
+    name: STRING(20)
+  })
   return Tag
 }
