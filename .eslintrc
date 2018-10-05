@@ -19,6 +19,7 @@
     "use": true,
     "Controller": true,
     "C": true,
+    "S": true,
     "check": true
   }
 }

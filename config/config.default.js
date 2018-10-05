@@ -40,5 +40,12 @@ module.exports = appInfo => {
     }
   }
 
+  config.security = {
+    csrf: {
+      enable: false,
+      ignoreJSON: true
+    }
+  }
+
   return config
 }
