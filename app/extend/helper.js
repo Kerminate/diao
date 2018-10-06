@@ -11,7 +11,7 @@ module.exports = {
     throw [{ field, message }]
   },
   // range 快速生成 start 到 end - 1 的数组
-  Range(start, end) {
+  range(start, end) {
     const _range = function* name(start, end) {
       let index = start
       if (typeof end === 'undefined') {

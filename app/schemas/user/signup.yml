@@ -1,5 +1,3 @@
-# 缩进应该用空格
-
 username:
   required: true
   message: '请填写用户名'
@@ -12,14 +10,14 @@ confirm_password:
   - required: true
     message: '请填写确认密码'
   - validator: !!js/function >
-    function validator(ctx) {
-      return async function (rule, value, callback, source, options) {
-        if (ctx.request.body.password === value) {
-          return callback();
+      function validator(ctx) {
+        return async function (rule, value, callback, source, options) {
+          if (ctx.request.body.password === value) {
+            await callback();
+          }
+          callback([{ message:'密码与确认密码不匹配', field:'confirm_password' }])
         }
-        callback([{ message: '密码与确认密码不匹配', field: 'confirm_password' }])
       }
-    }
 email:
   type: 'email'
   required: true

@@ -1,4 +1,6 @@
 'use strict'
+const R = require('ramda')
+const chalk = require('chalk')
 
 module.exports = appInfo => {
   const config = (exports = {})
@@ -45,6 +47,28 @@ module.exports = appInfo => {
       enable: false,
       ignoreJSON: true
     }
+  }
+
+  config.jwt = {
+    secret: '123456',
+    enable: true,
+    ignore(ctx) {
+      const paths = ['api/v1/signin', '/api/v1/signup']
+      if (DEV) {
+        const tip = `${chalk.yellow('[ JWT ]')} --> ${
+          R.contains(ctx.path, paths)
+            ? chalk.green(ctx.path)
+            : chalk.red(ctx.red)
+        }`
+        console.log(tip)
+      }
+      return R.contains(ctx.path, paths)
+    }
+  }
+
+  config.passportLocal = {
+    usernameField: 'email',
+    passwordField: 'password'
   }
 
   return config

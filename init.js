@@ -19,6 +19,10 @@ function globalBaseInitial(baseDir) {
     global.check = check
   }
 
+  if (notInGlobal('DEV')) {
+    global.DEV = process.env.NODE_ENV !== 'production'
+  }
+
   if (notInGlobal('Service')) {
     global.S = global.Service = require('egg').Service
   }

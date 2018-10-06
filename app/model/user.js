@@ -1,5 +1,5 @@
 'use strict'
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 module.exports = app => {
   const { INTEGER, STRING, TINYINT } = app.Sequelize
