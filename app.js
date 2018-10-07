@@ -1,5 +1,9 @@
 'use strict'
 
-const { globalBaseInitial } = require('./init')
+const { globalBaseInitial, globalLogger } = require('./init')
+
 globalBaseInitial(__dirname)
-module.exports = app => {}
+
+module.exports = app => {
+  globalLogger(app)
+}

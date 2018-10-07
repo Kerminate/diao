@@ -39,6 +39,17 @@ function globalBaseInitial(baseDir) {
   }
 }
 
+function globalLogger(app) {
+  if (DEV) {
+    global.debug = app.logger.debug.bind(app.logger)
+    global.info = app.logger.info.bind(app.logger)
+  } else {
+    global.info = () => {}
+    global.debug = () => {}
+  }
+}
+
 module.exports = {
-  globalBaseInitial
+  globalBaseInitial,
+  globalLogger
 }

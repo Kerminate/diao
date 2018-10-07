@@ -53,22 +53,46 @@ module.exports = appInfo => {
     secret: '123456',
     enable: true,
     ignore(ctx) {
-      const paths = ['api/v1/signin', '/api/v1/signup']
-      if (DEV) {
-        const tip = `${chalk.yellow('[ JWT ]')} --> ${
-          R.contains(ctx.path, paths)
-            ? chalk.green(ctx.path)
-            : chalk.red(ctx.red)
-        }`
-        console.log(tip)
-      }
-      return R.contains(ctx.path, paths)
+      return true
+      // const paths = ['api/v1/signin', '/api/v1/signup']
+      // if (DEV) {
+      //   const tip = `${chalk.yellow('[ JWT ]')} --> ${
+      //     R.contains(ctx.path, paths)
+      //       ? chalk.green(ctx.path)
+      //       : chalk.red(ctx.red)
+      //   }`
+      //   console.log(tip)
+      // }
+      // return R.contains(ctx.path, paths)
     }
   }
 
   config.passportLocal = {
     usernameField: 'email',
     passwordField: 'password'
+  }
+
+  config.email = {
+    username: '1716857218@qq.com',
+    password: 'krqjwpqjvmlabcbb',
+    host: 'smtp.qq.com',
+    sender: 'bob <1716857218@qq.com>'
+  }
+
+  config.redis = {
+    client: {
+      port: 6379,
+      host: '127.0.0.1',
+      password: '',
+      db: 0
+    }
+  }
+
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.njk': 'nunjucks'
+    }
   }
 
   return config

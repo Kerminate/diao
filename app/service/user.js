@@ -60,6 +60,59 @@ class User extends S {
     const invitations = await this.generatorInvitation(user.id, 5)
     return { user, invitations }
   }
+
+  /**
+   * * 发送验证邮件
+   * @param {*} title 标题
+   * @param {*} email 邮件地址
+   * @param {*} getTemplate 获取模板
+   * @return {void}
+   * @memberof User
+   */
+  async sendVerifyEmail(title, email, getTemplate) {
+    let user = null
+    if (R.type(email) === 'Object') {
+      user = email
+      email = user.email
+    } else {
+      user = await this._User.findByEmail(email)
+    }
+    const token = this.ctx.random(4)
+    await this.app.redis.set(
+      'email:' + user.id,
+      token,
+      'EX',
+      60 * 3 * 1000 // 3分钟
+    )
+    const template = getTemplate(user, token)
+    info('[send email template] -> ' + email + ' | ' + template)
+    const mail_ret = await this.app.email.sendEmail(title, template, email)
+    info(mail_ret)
+    if (mail_ret.code === 0) {
+      return true
+    }
+    return false
+  }
+
+  /**
+   * * 验证邮件 Token
+   * @param {*} user_id 用户 ID
+   * @param {*} token 验证码
+   * @return {boolean} 是否通过
+   * @memberof User
+   */
+  async verifyToken(user_id, token) {
+    const key = 'email:' + user_id
+    const local_token = await this.app.redis.get(key)
+    if (local_token === token) {
+      await this.app.redis.del(key)
+      const user = await this._User.findById(user_id)
+      user.email_verifyed = 1
+      await user.save()
+      return true
+    }
+    return false
+  }
 }
 
 module.exports = User

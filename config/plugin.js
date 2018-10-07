@@ -31,3 +31,18 @@ exports.passportLocal = {
   enable: true,
   package: 'egg-passport-local'
 }
+
+exports.email = {
+  enable: true,
+  package: 'egg-mail'
+}
+
+exports.redis = {
+  enable: true,
+  package: 'egg-redis'
+}
+
+exports.nunjucks = {
+  enable: true,
+  package: 'egg-view-nunjucks'
+}

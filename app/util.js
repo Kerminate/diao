@@ -5,11 +5,12 @@ const { forEachObjIndexed, forEach } = require('ramda')
 function initRouterMap(prefix, maps, router) {
   forEachObjIndexed((map, method) => {
     forEachObjIndexed((controller, url) => {
-      if (DEV) {
-        console.log(
-          `${chalk.blue('[' + method + ']')} -> ${chalk.red(prefix + url)}`
-        )
-      }
+      // if (DEV) {
+      //   console.log(
+      //     `${chalk.blue('[' + method + ']')} -> ${chalk.red(prefix + url)}`
+      //   )
+      // }
+      info('[%s] -> %s', method, chalk.red(prefix + url))
       router[method](prefix + url, controller)
     }, map)
   }, maps)
@@ -21,9 +22,10 @@ function mountPassportToController(keys, passport, controller) {
     controller.passport = {}
   }
   forEach(value => {
-    if (DEV) {
-      console.log(`${chalk.blue('[ mount passport ')} ${chalk.red(value)}`)
-    }
+    // if (DEV) {
+    //   console.log(`${chalk.blue('[ mount passport ')} ${chalk.red(value)}`)
+    // }
+    info('[passport] -> %s', chalk.red('controller.passport.' + value))
     // 需要返回一个 token，不需要重定向，设置为 undefined 跳过 egg-passport 的重定向逻辑
     controller.passport[value] = passport.authenticate(value, {
       session: false,

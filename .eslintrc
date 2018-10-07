@@ -21,6 +21,8 @@
     "C": true,
     "S": true,
     "DEV": true,
-    "check": true
+    "check": true,
+    "info": true,
+    "debug": true
   }
 }
