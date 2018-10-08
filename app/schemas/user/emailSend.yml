@@ -1,0 +1,5 @@
+# 发送验证邮件
+email:
+  - type: 'email'
+  - required: true
+    message: '请提供用户邮箱'

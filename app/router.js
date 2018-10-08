@@ -10,6 +10,9 @@ const install = require('./util').installPassport
 module.exports = app => {
   const { router, controller } = app
   router.get('/', controller.home.index)
+  router.get('/email/forget_password', controller.user.forgetPasswordG)
+  router.post('/email/forget_password', controller.user.forgetPasswordP)
+  router.get('/email/verify', controller.user.emailVerify)
 
   install(app.passport, require('./passport')) // 添加验证逻辑
   mount(['local'], app.passport, controller) // 将 local 添加到路由上

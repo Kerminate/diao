@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs')
 module.exports = app => {
   const { INTEGER, STRING, TINYINT } = app.Sequelize
   const User = app.model.define('User', {
-    email: STRING(40),
+    email: {
+      type: STRING(40),
+      unique: true
+    },
     password: STRING,
     inviter_id: INTEGER,
     username: STRING(40),
@@ -32,6 +35,12 @@ module.exports = app => {
 
   User.beforeSave(hashPwd)
 
+  /**
+   * * 用户登录方法
+   * @param {string} email 邮箱
+   * @param {string} password 密码
+   * @return {(User|boolean)} 登陆成功的用户
+   */
   User.Auth = async function(email, password) {
     const user = await this.findOne({
       where: {
@@ -42,6 +51,14 @@ module.exports = app => {
       return user
     }
     return false
+  }
+
+  User.findByEmail = async function(email) {
+    await this.findOne({
+      where: {
+        email
+      }
+    })
   }
 
   return User
