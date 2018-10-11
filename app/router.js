@@ -14,6 +14,8 @@ module.exports = app => {
   router.post('/email/forget_password', controller.user.forgetPasswordP)
   router.get('/email/verify', controller.user.emailVerify)
 
+  router.resources('images', '/images', controller.image)
+
   install(app.passport, require('./passport')) // 添加验证逻辑
   mount(['local'], app.passport, controller) // 将 local 添加到路由上
   init('/api/v1', require('./api')(controller), router)
