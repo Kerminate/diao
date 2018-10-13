@@ -5,6 +5,7 @@ module.exports = app => {
   const Image = app.model.define('Image', {
     title: STRING(40),
     description: STRING(255),
+    view: INTEGER,
     main_url: STRING(20),
     list_url: STRING(90),
     user_id: {

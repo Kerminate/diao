@@ -20,7 +20,20 @@ module.exports = app => {
   })
 
   User.associate = function() {
-    // associations can be defined here
+    app.model.Invitation.belongsTo(app.model.User, {
+      foreignKey: 'user_id'
+    })
+    app.model.User.hasMany(app.model.Invitation, {
+      foreignKey: 'user_id'
+    })
+    app.model.Invitation.belongsTo(app.model.User, {
+      foreignKey: 'use_user_id',
+      as: 'used_user'
+    })
+    app.model.User.hasOne(app.model.Invitation, {
+      foreignKey: 'use_user_id',
+      as: 'my_used_invitation'
+    })
   }
 
   /**

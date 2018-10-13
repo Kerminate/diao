@@ -14,7 +14,7 @@ module.exports = app => {
     app.model.Image.hasMany(this)
 
     this.belongsTo(app.model.User)
-    app.model.hasMany(this)
+    app.model.User.hasMany(this)
 
     this.hasMany(this, {
       foreginKey: 'parent_id',
