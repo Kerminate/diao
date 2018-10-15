@@ -95,5 +95,10 @@ module.exports = appInfo => {
     }
   }
 
+  config.oAuth2Server = {
+    debug: true,
+    grants: ['authorization_code', 'refresh_token']
+  }
+
   return config
 }
