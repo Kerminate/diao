@@ -51,7 +51,7 @@ module.exports = appInfo => {
 
   config.jwt = {
     secret: '123456',
-    enable: true,
+    enable: false,
     ignore(ctx) {
       return true
       // const paths = ['api/v1/signin', '/api/v1/signup']

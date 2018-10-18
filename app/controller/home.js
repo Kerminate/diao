@@ -8,8 +8,9 @@ class HomeController extends Controller {
     // const r = use('app.schemas.signup')
     // this.ctx.type = 'json'
     // this.ctx.body = JSON.stringify(r)
-    this.ctx.type = 'json'
-    this.ctx.body = this.ctx.state
+    // this.ctx.type = 'json'
+    // this.ctx.body = this.ctx.state
+    return this.ctx.render('user/login.njk', { query: this.ctx.querystring })
   }
 }
 
