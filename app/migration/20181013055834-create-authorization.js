@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Authorizations', {
@@ -14,7 +14,7 @@ module.exports = {
       expires_at: {
         type: Sequelize.DATE
       },
-      redirect_url: {
+      redirect_uri: {
         type: Sequelize.STRING
       },
       scope: {
@@ -34,9 +34,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Authorizations');
+    return queryInterface.dropTable('Authorizations')
   }
-};
+}

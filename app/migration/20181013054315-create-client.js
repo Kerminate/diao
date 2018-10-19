@@ -17,7 +17,7 @@ module.exports = {
       client_secret: {
         type: Sequelize.STRING
       },
-      redirect_urls: {
+      redirect_uris: {
         type: Sequelize.STRING
       },
       grants: {

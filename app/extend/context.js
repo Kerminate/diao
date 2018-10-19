@@ -1,8 +1,17 @@
 'use strict'
 const Email = require('emailjs/email')
 const mailK = Symbol.for('MY_EMAIL')
+const payK = Symbol.for('MY_PAY')
+const Alipay = require('alipay-node-sdk')
 
 module.exports = {
+  get pay() {
+    if (this[payK]) {
+      return this[payK]
+    }
+    this[payK] = new Alipay(this.app.config.pay)
+    return this[payK]
+  },
   random(len) {
     return Math.random()
       .toString(36)

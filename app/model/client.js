@@ -11,7 +11,7 @@ module.exports = app => {
       },
       user_id: DataTypes.INTEGER,
       client_secret: DataTypes.STRING,
-      redirect_urls: DataTypes.STRING,
+      redirect_uris: DataTypes.STRING,
       grants: DataTypes.STRING
     },
     {

@@ -19,9 +19,15 @@ module.exports = app => {
   // token 用来发放访问令牌的路由，authorize 用来获取授权码的路由，authenticate 是登录之后可以访问的路由
   app.all('/token', app.oAuth2Server.token(), ctx => ctx.state.oauth.token) // 获取 access_token
   app.all('/authorize', app.oAuth2Server.authorize()) // 获取授权码
-  app.all('/authenticate', app.oAuth2Server.authenticate(), ctx => {
-    ctx.body = ctx.state.oauth
-  })
+  app.all(
+    '/authenticate',
+    app.oAuth2Server.authenticate({
+      scope: 'r_user'
+    }),
+    ctx => {
+      ctx.body = ctx.state.oauth
+    }
+  )
 
   install(app.passport, require('./passport')) // 添加验证逻辑
   mount(['local'], app.passport, controller) // 将 local 添加到路由上

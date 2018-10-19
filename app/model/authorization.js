@@ -6,7 +6,7 @@ module.exports = app => {
     {
       code: DataTypes.STRING,
       expires_at: DataTypes.DATE,
-      redirect_url: DataTypes.STRING,
+      redirect_uri: DataTypes.STRING,
       scope: DataTypes.STRING,
       client_id: DataTypes.STRING,
       user_id: DataTypes.INTEGER
