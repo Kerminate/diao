@@ -14,6 +14,10 @@ module.exports = app => {
   router.post('/email/forget_password', controller.user.forgetPasswordP)
   router.get('/email/verify', controller.user.emailVerify)
 
+  router.get('/alipay/pay/:month', controller.pay.index)
+  router.get('/alipay/callback', controller.pay.alipay) // 异步回调接口
+  router.get('/alipay/success', controller.pay.success) // 同步授权接口
+
   router.resources('images', '/images', controller.image)
 
   // token 用来发放访问令牌的路由，authorize 用来获取授权码的路由，authenticate 是登录之后可以访问的路由

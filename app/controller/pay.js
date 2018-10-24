@@ -8,7 +8,7 @@ class PayController extends Controller {
     const month = parseInt(ctx.params.month) || 1
     const user_id = ctx.request.query.id
 
-    const order = await app.module.Order.create({
+    const order = await app.model.Order.create({
       state: 0,
       order_id: uuid(),
       user_id,
